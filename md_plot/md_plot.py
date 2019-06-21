@@ -13,10 +13,10 @@ import unidip.dip as dip
 from pandas.api.types import is_numeric_dtype
 from scipy.stats.mstats import mquantiles
 from scipy.stats import norm, trim_mean, skewtest, kstest
-from helper.robust_normalization import robust_normalization
-from helper.signed_log import signed_log
-from helper.bimodal import bimodal
-from helper.stat_pde_density import stat_pde_density
+from .helper.robust_normalization import robust_normalization
+from .helper.signed_log import signed_log
+from .helper.bimodal import bimodal
+from .helper.stat_pde_density import stat_pde_density
 
 def md_plot(data, names=None, ordering='Default', scaling=None, 
             fill='darkblue', robustGaussian=True, gaussianColor='magenta', 

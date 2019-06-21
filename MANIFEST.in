@@ -1,1 +1,7 @@
-include README.md
+include md_plot/examples/BimodalArtificial.gz.pkl
+include md_plot/examples/MTY_Clipped.gz.pkl
+include md_plot/examples/MuncipalIncomeTaxYield_IncomeTaxShare.gz.pkl
+include md_plot/examples/SampleLogInome.gz.pkl
+include md_plot/examples/SkewedDistribution.gz.pkl
+include md_plot/examples/StocksData2018Q1.gz.pkl
+include md_plot/examples/UniformSample.gz.pkl
