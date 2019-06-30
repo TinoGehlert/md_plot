@@ -10,4 +10,8 @@ in R package [DataVisualizations](https://cran.r-project.org/web/packages/DataVi
 Basic Usage
 ^^^^^^^^^^^
 
-todo
+from md_plot import MDplot, load_examples
+
+dctExamples = load_examples()
+
+MDplot(dctExamples["BimodalArtificial"])

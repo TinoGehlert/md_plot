@@ -7,8 +7,25 @@ violin or so-called bean plots and posses advantages in comparison to the conven
 box plot [Thrun/Ultsch, 2019]. This is the Python implementation of the function MD-Plot contained 
 in R package [DataVisualizations](https://cran.r-project.org/web/packages/DataVisualizations/index.html)
 
-## Main Features
-- todo
+## Where to get it
+The source code is hosted on GitHub at: https://github.com/TinoGehlert/md_plot
+
+```sh
+pip install md_plot
+```
+
+## Basic Usage
+```python
+from md_plot import MDplot, load_examples
+
+dctExamples = load_examples()
+
+MDplot(dctExamples["BimodalArtificial"])
+```
+
+<div align="left">
+  <img src="https://github.com/TinoGehlert/md_plot/blob/master/doc/images/bimodal_artificial.png"><br>
+</div>
 
 ## Dependencies
 - [pandas](https://pandas.pydata.org): 0.24.2 or higher
@@ -17,3 +34,5 @@ in R package [DataVisualizations](https://cran.r-project.org/web/packages/DataVi
 - [matplotlib](https://matplotlib.org/): 3.1.0 or higher
 - [plotnine](https://plotnine.readthedocs.io/en/stable/): 0.5.1 or higher
 - [unidip](https://github.com/BenjaminDoran/unidip/): 0.1.1 or higher
+
+Windows users of Anaconda distribution should update numpy, scipy and matplotlib via conda instead of pip.

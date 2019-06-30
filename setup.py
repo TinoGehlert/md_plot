@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 
 setup(name='md_plot',
-      version='0.1.2',
+      version='0.1.3',
       project_urls={'R-Version': 'https://cran.r-project.org/web/packages/DataVisualizations/index.html', 
                     'Source': 'https://github.com/TinoGehlert/md_plot'},
       description='Draws a mirrored density plot for each input column',
