@@ -7,7 +7,7 @@ setup(name='md_plot',
                     'Source': 'https://github.com/TinoGehlert/md_plot'},
       description='Draws a mirrored density plot for each input column',
       long_description=open('readme_pypi.rst').read(),
-      download_url='https://github.com/TinoGehlert/md_plot/archive/v0.1.2.tar.gz',
+      download_url='https://github.com/TinoGehlert/md_plot/archive/v0.1.3.tar.gz',
       classifiers=[
         'Development Status :: 4 - Beta',
         'Intended Audience :: Science/Research',
