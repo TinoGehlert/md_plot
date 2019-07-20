@@ -8,18 +8,51 @@ Created on Sun Jun 16 12:30:49 2019
 import warnings
 import pandas as pd
 import numpy as np
-import plotnine as p9
+from plotnine.stats.stat import stat
+from plotnine.exceptions import PlotnineError
 from .pareto_density_estimation import pareto_density_estimation
 
-class stat_pde_density(p9.stats.stat.stat):
+class stat_pde_density(stat):
+    REQUIRED_AES = {'x', 'y'}
+    NON_MISSING_AES = {'weight'}
     DEFAULT_PARAMS = {'geom': 'violin', 'position': 'dodge',
                       'na_rm': True,
                       'adjust': 1, 'kernel': 'gaussian',
                       'n': 1024, 'trim': True,
                       'scale': 'area'}
+    DEFAULT_AES = {'weight': None}
+    CREATES = {'width'}
+    
+    def setup_params(self, data):
+        params = self.params.copy()
+        
+        valid_scale = ('area', 'count', 'width')
+        if params['scale'] not in valid_scale:
+            msg = "Parameter scale should be one of {}"
+            raise PlotnineError(msg.format(valid_scale))
+            
+        return params
     
     @classmethod
-    def compute_group(self, data, scales, **params):
+    def compute_panel(cls, data, scales, **params):
+        data = super(cls, cls).compute_panel(data, scales, **params)
+
+        if not len(data):
+            return data
+
+        if params['scale'] == 'area':
+            data['violinwidth'] = data['density']/data['density'].max()
+        elif params['scale'] == 'count':
+            data['violinwidth'] = (data['density'] /
+                                   data['density'].max() *
+                                   data['n']/data['n'].max())
+        elif params['scale'] == 'width':
+            data['violinwidth'] = data['scaled']
+
+        return data
+    
+    @classmethod
+    def compute_group(cls, data, scales, **params):
         def compute_pdedensity(x):
             nx = len(x)
             if nx < 2:
@@ -58,13 +91,5 @@ class stat_pde_density(p9.stats.stat.stat):
         dens["y"] = dens["x"]
         dens["x"] = data["x"].mean()
         dens["width"] = 0.9
-        
-        if params["scale"] == "area":
-            dens["violinwidth"] = dens["density"] / dens["density"].max()
-        if params["scale"] == "count":
-            dens["violinwidth"] = (dens["density"] / dens["density"].max()) \
-            * (dens["n"] / dens["n"].max())
-        if params["scale"] == "width":
-            dens["violinwidth"] = dens["scaled"]
         
         return dens

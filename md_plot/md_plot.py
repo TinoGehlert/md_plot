@@ -290,8 +290,8 @@ def MDplot(Data, Names=None, Ordering='Default', Scaling=None,
                                         y="Values")) \
                      + p9.scale_x_discrete(limits=rangfolge)
     
-    plot = plot + p9.geom_violin(stat = stat_pde_density(), fill=Fill, 
-                           scale=MDscaling, size=Size, trim=True) \
+    plot = plot + p9.geom_violin(stat = stat_pde_density(scale=MDscaling), 
+                                 fill=Fill, size=Size, trim=True) \
                            + p9.theme(axis_text_x=p9.element_text(rotation=90))
     
     if nPerVar.min() < MinimalAmoutOfData \
