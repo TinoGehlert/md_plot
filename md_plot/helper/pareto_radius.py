@@ -72,7 +72,7 @@ def pareto_radius(data, maximumNrSamples = 10000,
         raise Exception("Pareto Radius could not be calculated. "
                         "(nan or inf values)")
     
-    # todo plot
+    # plotting
     if plotDistancePercentiles == True:
         pzt = pd.Series(mquantiles(distvec, [(x+1)/100 for x in range(100)], 
                                    alphap=1/3, betap=1/3)).dropna()
@@ -92,4 +92,7 @@ def pareto_radius(data, maximumNrSamples = 10000,
     if nData > 1024:
         paretoRadius = paretoRadius * 4 / nData**0.2
     
-    return paretoRadius[0]
+    try:
+        return paretoRadius[0]
+    except:
+        return paretoRadius
