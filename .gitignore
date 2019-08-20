@@ -36,4 +36,4 @@ wheels/
 *.html
 
 # sphinx
-_build
+docs/_build/
