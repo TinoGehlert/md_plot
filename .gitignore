@@ -34,3 +34,6 @@ wheels/
 
 # html files e.g. plotly charts
 *.html
+
+# sphinx
+_build

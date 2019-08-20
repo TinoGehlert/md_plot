@@ -8,30 +8,16 @@ Welcome to MD-plot's documentation!
 
 .. toctree::
    :maxdepth: 2
-   :caption: Contents:
+   :caption: User Guide:
 
-This function creates a MD-plot for each column of the dataframe. The MD-plot is a visualization
-for a boxplot-like Shape of the PDF published in [Thrun/Ultsch, 2019]. It is an improvement of
-violin or so-called bean plots and posses advantages in comparison to the conventional well-known
-box plot [Thrun/Ultsch, 2019]. This is the Python implementation of the function MD-Plot contained 
-in R package DataVisualizations_.
-
-.. _DataVisualizations: https://cran.r-project.org/web/packages/DataVisualizations/index.html
-
-Basic Usage
-^^^^^^^^^^^
-
-from md_plot import MDplot, load_examples
-
-dctExamples = load_examples()
-
-MDplot(dctExamples["BimodalArtificial"])
+   user_guide/python_package
+   user_guide/r_package
+   user_guide/examples
 
 
+.. toctree::
+   :maxdepth: 2
+   :caption: Applications:
 
-Indices and tables
-==================
+   application/example_application
 
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
