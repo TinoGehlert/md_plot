@@ -32,7 +32,7 @@ dctExamples = load_examples()
 MDplot(dctExamples["BimodalArtificial"])
 ```
 
-![artificial bimodal distribution](images/bimodal_artificial.png)
+![](images/bimodal_artificial.png)
 
 ## Future Improvements
 

@@ -19,7 +19,7 @@ from md_plot import load_examples
 dctExamples = load_examples()
 ```
 
-![load inbuild examples](images/load_examples.png)
+![](images/load_examples.png)
 
 _**Fig. 1:** Return of the load_examples function. The sample data is contained in a dictionary as pandas dataframes and can be used in the MDplot to reproduce the visualizations._
 
@@ -36,7 +36,7 @@ dfMTY = dfMTY[(dfMTY["MTY_Clipped"] >= 1800) & (dfMTY["MTY_Clipped"] <= 6000)]
 MDplot(dfMTY)
 ```
 
-![mty clipped](images/mty_clipped.png)
+![](images/mty_clipped.png)
 
 _**Fig. 2:** MD-Plot of capped municipality income tax yield (MTY) of Germany municipalities of 2015. Good to see are the clear capping limits at which the were cropped for the visualization._
 
@@ -55,7 +55,7 @@ import plotnine as p9
 MDplot(dfMTY) + p9.labels.ggtitle('Capped MTY data') + p9.labels.ylab('PDE') + p9.labels.xlab('Variables') + p9.theme_seaborn()
 ```
 
-![mty clipped changed layout](images/mty_clipped_layout.png)
+![](images/mty_clipped_layout.png)
 
 _**Fig. 3:** MD plot of capped MTY data with title, changed axis labels and in seaborn theme_
 
@@ -71,7 +71,7 @@ The parameter _RobustGaussian_ is used to activate or deactivate an overlay of a
 MDplot(dctExamples['BimodalArtificial'], RobustGaussian=False)
 ```
 
-![bimodal without gaussian](images/bimodal_without_gaussian.png)
+![](images/bimodal_without_gaussian.png)
 
 _**Fig. 4:** Visualization of bimodal data without drawn Gaussian distribution._
 
@@ -79,7 +79,7 @@ _**Fig. 4:** Visualization of bimodal data without drawn Gaussian distribution._
 MDplot(dctExamples['BimodalArtificial'], GaussianColor='green', GaussianLwd=2.5)
 ```
 
-![bimodal with green gaussian](images/bimodal_with_green_gaussian.png)
+![](images/bimodal_with_green_gaussian.png)
 
 _**Fig. 5:** Visualization of bimodal data with a drawn Gaussian distribution._
 
@@ -91,7 +91,7 @@ The parameters _BoxPlot_ (deactivated by default) and _BoxColor_ are used for pl
 MDplot(dctExamples[' UniformSample'], BoxPlot = True)
 ```
 
-![boxplot](images/box_plot.png)
+![](images/box_plot.png)
 
 _**Fig. 6:** Uniformly distributed data with drawn Box Plot. The Box Plot alone would suggest a Gaussian distribution._
 
@@ -105,7 +105,7 @@ dfMTY = dfMTY[(dfMTY["MTY_Clipped"] >= 1800) & (dfMTY["MTY_Clipped"] <= 6000)]
 MDplot(dfMTY, SampleSize=5000)
 ```
 
-![mty clipped sample](images/mty_clipped_sample.png)
+![](images/mty_clipped_sample.png)
 
 _**Fig. 7:** From 9467 to 5000 rows sampled MD-Plot of capped municipality income tax yield of Germany municipalities of 2015._
 
@@ -117,7 +117,7 @@ In order to visualize the shapes of all features with very different scales in a
 MDplot(dctExamples['MuncipalIncomeTaxYield_IncomeTaxShare'])
 ```
 
-![its mty](images/its_mty.png)
+![](images/its_mty.png)
 
 _**Fig. 8:** Visualization of two features with different value ranges. The comparison of the distributions is only possible to a limited extent._
 
@@ -125,7 +125,7 @@ _**Fig. 8:** Visualization of two features with different value ranges. The comp
 MDplot(dctExamples['MuncipalIncomeTaxYield_IncomeTaxShare'], Scaling='CompleteRobust')
 ```
 
-![its mty scaled](images/its_mty_scaled.png)
+![](images/its_mty_scaled.png)
 
 _**Fig. 9:** Scaling makes it easy to compare the distributions of features with different ranges of values._
 
@@ -140,7 +140,7 @@ dfStocks = dfStocks[(dfStocks >= -250000) & (dfStocks <= 1000000)]
 MDplot(dfStocks, Ordering='Statistics')
 ```
 
-![stocks statistics ordering](images/stocks_statistics.png)
+![](images/stocks_statistics.png)
 
 _**Fig. 10:** MD plots of selected features from 269 companies on the German stock market reporting quarter-ly financial statements by the Prime standard. The features are ordered by the effect strength of statistical tests about unimodality and skewness. This leads to an ordering from “Gaussian” fea-tures on the left to “Non-Gaussian” features on the right._
 
@@ -148,7 +148,7 @@ _**Fig. 10:** MD plots of selected features from 269 companies on the German sto
 MDplot(dfStocks, Ordering='Alphabetical')
 ```
 
-![stocks alphabetical ordering](images/stocks_alphabetical.png)
+![](images/stocks_alphabetical.png)
 
 _**Fig. 11:** Same stock market features as in Fig. 10, but ordered alphabetical by their name._
 
