@@ -11,8 +11,9 @@ Welcome to MD-plot's documentation!
    :caption: User Guide:
 
    user_guide/python_package
+   user_guide/python_tutorial
    user_guide/r_package
-   user_guide/examples
+   user_guide/r_tutorial
 
 
 .. toctree::

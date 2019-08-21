@@ -23,6 +23,7 @@ The source code is hosted on GitHub at: https://github.com/TinoGehlert/md_plot
 Windows users of Anaconda distribution should update numpy, scipy and matplotlib via conda instead of pip.
 
 ## Basic Usage
+
 ```python
 from md_plot import MDplot, load_examples
 
@@ -32,3 +33,9 @@ MDplot(dctExamples["BimodalArtificial"])
 ```
 
 ![artificial bimodal distribution](images/bimodal_artificial.png)
+
+## Future Improvements
+
+In addition to bug fixing, these improvements to the md_plot pack-age are planned:
+- Close the performance gap to the R version
+- Reimplementation of dip-test based on diptest R package (uni-dip is using Monte Carlo simulations to compute the p-values, but this is not the default behavior of the diptest in R)
