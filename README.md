@@ -1,5 +1,7 @@
 # Mirrored Density Plot - MD-Plot
 
+[![Documentation Status](https://readthedocs.org/projects/md-plot/badge/?version=latest)](https://md-plot.readthedocs.io/en/latest/?badge=latest)
+
 ## What is it
 This function creates a MD-plot for each column of the dataframe. The MD-plot is a visualization
 for a boxplot-like Shape of the PDF published in [Thrun/Ultsch, 2019]. It is an improvement of
