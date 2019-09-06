@@ -36,7 +36,7 @@ The MDplot uses the syntax of ggplot2.
 library(DataVisualizations)
 MDplot(Data,Ordering = 'Columnwise')+ggtitle('Distribution Analysis of Flow Cytometry')+xlab('Feautres of Flow Cytometry')+ylab('Pareto Density Estimation (PDE)')
 ```
-![](images/FlowCyotometry.jpeg)
+![](.../images/FlowCyotometry.jpeg)
 
 No feature is overlayed with with a roubustly estimated unimodal Gaussian distribution  in magenta, meaning that statistical testing showed a significant difference.
 
