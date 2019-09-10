@@ -48,7 +48,7 @@ No Data clipping is visible.
 
 ## Class-wise MD plot
 An follow up question could be if we are able to distinguish ill from healthy patients by features, if a prior classification is given.
-We select features which are used in current pannels. 
+We select features which are used in current panels. 
 
 ```r
 library(DataVisualizations)
@@ -64,14 +64,47 @@ ClassMDplot(Data[,'CD8kappa'],Cls)$ggobject+ggtitle('Class-wise Distribution Ana
 ClassMDplot(Data[,'CD7lambda'],Cls)$ggobject+ggtitle('Class-wise Distribution Analysis of Flow Cytometry Feature')+xlab('Lambda')+ylab('Pareto Density Estimation (PDE)')
 
 ```
+![](FuerDoku/CD5.png)
+![](FuerDoku/CD20.png)
+![](FuerDoku/CD23.png)
+![](FuerDoku/CD8kappa.png)
+![](FuerDoku/CD7lambda.png)
 
 Of course we do not see any difference because the data was not gated priorly and because one feauture alone is insufficent.
 
-## Class-wise MD plot II
+## High-Dimensional Accounting Information for the Explanation of Clusters
 
-We use a published clustering of [Thrun/Ultsch, 2020] on order to show in stocks data that the high-dimensional clustering can be distinguished by one single feature.
+We use a clustering of manuscript currently under review [Thrun/Ultsch, 2019] in order to show that the the high-dimensional clustering can be distinguished by one single feature. The data consists of Aaccounting information of 261 companies traded in the Frankfurt stock exchange in the German Prime standard. We select four features which are understandable (details, see [Thrun/Ultsch, 2019]) when published. The first feauture is clearly seperated by the clustering, the other three are not completly seperated. Thus, the clustering of the high-dimensional data set of 45 features can be explained by one single feature afterwards!
 
 ```{r}
+data('AccountingInformation_PrimeStandard_Q3_2019.rda')
+str(AI_PS_Q3_2019)
+Data=AI_PS_Q3_2019$Data
+Cls=AI_PS_Q3_2019$Cls
 
+NamesTarget=c('IncomeBeforeTax','NetIncomeFromContinuingOps',"CashAndCashEquivalents","OperatingIncomeorLoss")
+TargetFeatures=DataVisualizations::SignedLog(Data[,match(table = colnames(Data),NamesTarget)])
+
+i=1
+ClassMDplot(TargetFeatures[,i],Cls,main = colnames(TargetFeatures)[i])$ggobject+theme_bw()
+#ggsave(filename=paste0(colnames(TargetFeatures)[i],'.png'))
+
+i=2
+ClassMDplot(TargetFeatures[,i],Cls,main = colnames(TargetFeatures)[i])$ggobject+theme_bw()
+#ggsave(filename=paste0(colnames(TargetFeatures)[i],'.png'))
+
+i=3
+ClassMDplot(TargetFeatures[,i],Cls,main = colnames(TargetFeatures)[i])$ggobject+theme_bw()
+#ggsave(filename=paste0(colnames(TargetFeatures)[i],'.png'))
+
+i=4
+ClassMDplot(TargetFeatures[,i],Cls,main = colnames(TargetFeatures)[i])$ggobject+theme_bw()
+#ggsave(filename=paste0(colnames(TargetFeatures)[i],'.png'))
 
 ```
+![](FuerDoku/IncomeBeforeTax.png)
+![](FuerDoku/NetIncomeFromContinuingOps.png)
+![](FuerDoku/CashAndCashEquivalents.png)
+![](FuerDoku/OperatingIncomeorLoss.png)
+
+[Thrun/Ultsch, 2019] Thrun, M. C., & Ultsch, A.: Stock Selection via Knowledge Discovery using Swarm Intelligence with Emergence, IEEE Intelligent Systems, Vol. under review, pp., 2019.
