@@ -149,7 +149,8 @@ colnames(dataframe) <- c('ID', 'Variables', 'Values')
 plot =ggplot(data = dataframe,
              aes_string(x = "Variables", group = "Variables", y = "Values"))+ylim(-200000,1000000)
 plot=plot + geom_violin(fill="blue",scale = "width",trim=TRUE)
-plot+ggtitle('Shape of PDF is not visible')+xlab('Features')+ylab('Some Unknown Density Estimation')+ggExtra::rotateTextX()  
+plot+ggtitle('Shape of PDF is not visible in ggplot2::geom_violin')+xlab('Features')+ylab('Some Unknown Density Estimation')+ggExtra::rotateTextX()
+
 ggsave(filename='ggplot_fails.png')
 
 MDplot(Data,Scaling = 'Robust')+ggtitle('MD plot with Robust Scaling')
