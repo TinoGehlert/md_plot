@@ -1,9 +1,9 @@
-# Example Application
+# Example Applications
 
-Distribution Analysis of Flow Cytometry Big Data for the Detection of Lymphoma
+- Distribution Analysis of Flow Cytometry Big Data for the Detection of Lymphoma
+- High-Dimensional Accounting Information for the Explanation of Clusters
 
-
-## Content of Data
+## Content of Flow Cytometry Data
 
 Multiparameter flow cytometry is an immunologically based standard diagnostic procedure in oncology. It requires special medical knowledge in analysis and interpretation and a very extensive data aquisition. The knowledge of performing a manual analysis must be acquired in addition to the clinical background over several years of training. The method is of great clinical value for the care of oncological patients due to its simple application and high measuring speed compared to molecular genetic methods. We will show here, that there are infact obvious differences between ill and healthy patients if the MD plot is used.
 
@@ -46,7 +46,7 @@ Skewness is visible in the features: SS1,CD8kappa, CD23, CD7lambda, CD5, CD38, C
 
 No Data clipping is visible.
 
-## Class-wise MD plot
+## Class-wise MD plot for 1. Application
 An follow up question could be if we are able to distinguish ill from healthy patients by features, if a prior classification is given.
 We select features which are used in current panels. 
 
@@ -72,11 +72,12 @@ ClassMDplot(Data[,'CD7lambda'],Cls)$ggobject+ggtitle('Class-wise Distribution An
 
 Of course we do not see any difference because the data was not gated priorly and because one feauture alone is insufficent.
 
-## High-Dimensional Accounting Information for the Explanation of Clusters
-
+## Content of High-Dimensional Accounting Information
 We use a clustering of manuscript currently under review [Thrun/Ultsch, 2019] in order to show that the the high-dimensional clustering can be distinguished by one single feature. The data consists of Aaccounting information of 261 companies traded in the Frankfurt stock exchange in the German Prime standard. We select four features which are understandable (details, see [Thrun/Ultsch, 2019]) when published. 
 
-The first feature is clearly seperated by the clustering, the other three features are not completly seperated. In sum, the clustering of the high-dimensional data set of 45 features can be explained by one single feature afterwards if outliers are disregarded (cluster 3)!
+## Class-wise MD plot for 2. Application the Explains Clustering
+
+The first feature is clearly seperated by the clustering, the other three features are not completly seperated. If not enough data is available for the estimation of the probability density function (pdf), scatter plots are drawn. In sum, the clustering of the high-dimensional data set of 45 features can be explained by one single feature afterwards if outliers are disregarded (cluster 3)!
 
 ```{r}
 data('AccountingInformation_PrimeStandard_Q3_2019.rda')
