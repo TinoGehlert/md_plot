@@ -7,21 +7,35 @@ Conventional visualization methods of univariate probability density distributio
 
 ## Basic Usage of Visualization
 
+...
 
 ## Changing Layout 
 
+...
+
 ## Advanced Usage
 
-# Overlay with Robustly Estimated Gaussian Distribution
+...
 
-# Overlay with Box Plot
+### Overlay with Robustly Estimated Gaussian Distribution
 
-# Scaling
+...
 
-# Sampling
+### Overlay with Box Plot
 
-# Ordering
+...
 
+### Scaling
+
+...
+
+### Sampling
+
+...
+
+### Ordering
+
+...
 
 ## Distribution Analysis of Stocks Data
 The data consists of Aaccounting information of 261 companies traded in the Frankfurt stock exchange in the German Prime standard. The data set is described in [Thrun et al., 2019]. Here, we use the third quarter instead the first, but the result remains the same because the same features are selected.
