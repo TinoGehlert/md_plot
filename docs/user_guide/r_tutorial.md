@@ -14,8 +14,13 @@ The bean plot does not show the capped range and indicates multiomodality
 library(DataVisualizations)
 data=runif(1000,10,20)
 MDplot(data)
+```
+![](images/mdplotuniform.jpeg)
+
+```{r}
 beanplot::beanplot(data)
 ```
+![](images/beanplotuniform.jpeg)
 
 ## Changing Layout 
 The MDplot uses the syntax of ggplot2. In this example we capped the values
@@ -26,12 +31,12 @@ library(ggplot2)
 data(MTY)
 MDplot(MTY,Names = 'MTY')+ylim(c(0,10000))+ggtitle('Muncipal Income Tax Yield')+theme_bw()+theme(plot.title = element_text(hjust = 0.5))
 ```
+![](images/mty.jpeg)
 
 Of course, the ggplot2 internally also provides a similar visualization, but it does not estimate the probability density function (pdf) sufficiently. This is outlined in the next example.
 
 ## Distribution Analysis of Stocks Data
 The data consists of Aaccounting information of 261 companies traded in the Frankfurt stock exchange in the German Prime standard. The data set is described in [Thrun et al., 2019]. Here, we use the third quarter instead the first, but the result remains the same because the same features are selected.
-
 
 ```{r}
 library(DataVisualizations)
@@ -115,6 +120,7 @@ diptest::dip.test(Data)
 
 MDplot(Data,RobustGaussian = T)
 ```
+![](images/Multimodal.jpeg)
 
 ### Overlay with Box Plot
 
@@ -125,6 +131,7 @@ library(DataVisualizations)
 data(ITS)
 MDplot(ITS,BoxPlot = T)
 ```
+![](images/itsboxplot.jpeg)
 
 ### Scaling
 
@@ -148,7 +155,8 @@ ggsave(filename='ggplot_fails.png')
 MDplot(Data,Scaling = 'Robust')+ggtitle('MD plot with Robust Scaling')
 ggsave(filename='RobustMDplot.png')
 ```
-
+![](images/ggplot_fails.png)
+![](images/RobustMDplot.png)
 ### Ordering
 
 Data can ordered in the plots in varous ways. The resulting ordering or event transformations can be used in subsequent analysis: 
@@ -166,6 +174,7 @@ str(DataOrdered)
 List$ggplotObj+ylim(-200000,1000000)
 ggsave(filename='MDplot_stocksdata_ordered.png')
 ```
+![](images/MDplot_stocksdata_ordered.png)
 
 [Thrun/Ultsch, 2019] Thrun, M. C., & Ultsch, A.: Analyzing the Fine Structure of Distributions, Technical Report of the University of Marburg, 2019.
 
