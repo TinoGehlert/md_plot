@@ -26,7 +26,7 @@ dbt.ClassAnalysis::TheSameKey(ClsKey,Key)
 dim(Data)
 ```
 
-## MD plot
+## The Mirrored-Density plot (MD plot) in the Application
 
 The Mirrored-Density plot (MD plot) can be used with an prior classification if one is interested in the differences between classes. The differences are here interesting, because they can be exploited for detection purposes.
 
