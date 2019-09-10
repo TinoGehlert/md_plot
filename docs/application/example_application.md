@@ -74,7 +74,9 @@ Of course we do not see any difference because the data was not gated priorly an
 
 ## High-Dimensional Accounting Information for the Explanation of Clusters
 
-We use a clustering of manuscript currently under review [Thrun/Ultsch, 2019] in order to show that the the high-dimensional clustering can be distinguished by one single feature. The data consists of Aaccounting information of 261 companies traded in the Frankfurt stock exchange in the German Prime standard. We select four features which are understandable (details, see [Thrun/Ultsch, 2019]) when published. The first feauture is clearly seperated by the clustering, the other three are not completly seperated. Thus, the clustering of the high-dimensional data set of 45 features can be explained by one single feature afterwards!
+We use a clustering of manuscript currently under review [Thrun/Ultsch, 2019] in order to show that the the high-dimensional clustering can be distinguished by one single feature. The data consists of Aaccounting information of 261 companies traded in the Frankfurt stock exchange in the German Prime standard. We select four features which are understandable (details, see [Thrun/Ultsch, 2019]) when published. 
+
+The first feature is clearly seperated by the clustering, the other three features are not completly seperated. In sum, the clustering of the high-dimensional data set of 45 features can be explained by one single feature afterwards if outliers are disregarded (cluster 3)!
 
 ```{r}
 data('AccountingInformation_PrimeStandard_Q3_2019.rda')
