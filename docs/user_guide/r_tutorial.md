@@ -1,7 +1,7 @@
 # R Tutorial
 
 
-## Comparison to Violin Plots of ggplot2.
+## Distribution Analysis of Stocks Data
 The data consists of Aaccounting information of 261 companies traded in the Frankfurt stock exchange in the German Prime standard. The data set is described in [Thrun et al., 2019]. Here, we use the third quarter instead the first, but the result remains the same because the same features are selected.
 
 
