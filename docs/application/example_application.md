@@ -26,7 +26,7 @@ dbt.ClassAnalysis::TheSameKey(ClsKey,Key)
 dim(Data)
 ```
 
-## MD-plot
+## MD plot
 
 The Mirrored-Density plot (MD plot) can be used with an prior classification if one is interested in the differences between classes. The differences are here interesting, because they can be exploited for detection purposes.
 
@@ -46,7 +46,7 @@ Skewness is visible in the features: SS1,CD8kappa, CD23, CD7lambda, CD5, CD38, C
 
 No Data clipping is visible.
 
-## Class-wise MD plot for 1. Application
+## Class-wise MD plot for Flow Cytometry Application
 An follow up question could be if we are able to distinguish ill from healthy patients by features, if a prior classification is given.
 We select features which are used in current panels. 
 
@@ -75,7 +75,7 @@ Of course we do not see any difference because the data was not gated priorly an
 ## Content of High-Dimensional Accounting Information
 We use a clustering of manuscript currently under review [Thrun/Ultsch, 2019] in order to show that the the high-dimensional clustering can be distinguished by one single feature. The data consists of Aaccounting information of 261 companies traded in the Frankfurt stock exchange in the German Prime standard. We select four features which are understandable (details, see [Thrun/Ultsch, 2019]) when published. 
 
-## Class-wise MD plot for 2. Application Explains Clustering
+## Class-wise MD plot for Accounting Information Explains Clustering
 
 The features have a large positive and negativ range. Therefore, we first compute the absolute log multiplied by the sign of the data observation. Thus, the data is then visualized on the logarithmic scale. The first feature is clearly seperated by the clustering, the other three features are not completly seperated. If not enough data is available for the estimation of the probability density function (pdf), scatter plots are drawn. In sum, the clustering of the high-dimensional data set of 45 features can be explained by one single feature afterwards if outliers are disregarded (cluster 3)!
 
