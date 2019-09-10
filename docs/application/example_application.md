@@ -77,7 +77,7 @@ We use a clustering of manuscript currently under review [Thrun/Ultsch, 2019] in
 
 ## Class-wise MD plot for 2. Application Explains Clustering
 
-The first feature is clearly seperated by the clustering, the other three features are not completly seperated. If not enough data is available for the estimation of the probability density function (pdf), scatter plots are drawn. In sum, the clustering of the high-dimensional data set of 45 features can be explained by one single feature afterwards if outliers are disregarded (cluster 3)!
+The features have a large positive and negativ range. Therefore, we first compute the absolute log multiplied by the sign of the data observation. Thus, the data is then visualized on the logarithmic scale. The first feature is clearly seperated by the clustering, the other three features are not completly seperated. If not enough data is available for the estimation of the probability density function (pdf), scatter plots are drawn. In sum, the clustering of the high-dimensional data set of 45 features can be explained by one single feature afterwards if outliers are disregarded (cluster 3)!
 
 ```{r}
 data('AccountingInformation_PrimeStandard_Q3_2019.rda')
