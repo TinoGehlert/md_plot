@@ -1,7 +1,7 @@
 # Example Applications
 
 - Distribution Analysis of Flow Cytometry Big Data for the Detection of Lymphoma
-- High-Dimensional Accounting Information for the Explanation of Clusters
+- Investigation of High-Dimensional Accounting Information with the Goal to Explain Clusters
 
 ## Content of Flow Cytometry Data
 
