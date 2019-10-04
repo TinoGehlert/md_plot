@@ -23,13 +23,15 @@ def MDplot(Data, Names=None, Ordering='Default', Scaling=None,
            GaussianLwd=1.5, BoxPlot=False, BoxColor='darkred', 
            MDscaling='width', Size=0.01, 
            MinimalAmoutOfData=40, MinimalAmoutOfUniqueData=12, 
-           SampleSize=500000, OnlyPlotOutput=True):
+           SampleSize=500000, OnlyPlotOutput=True, 
+           ValueColumn=None, ClassColumn=None):
     """
     Plots a mirrored density plot for each numeric column
     
     Args:
         Data (dataframe): dataframe containing data. Each column is one 
-                          variable
+                          variable (wide table format, for long table format 
+                          see ValueColumn and ClassColumn)
         Names (list): list of column names (will be used if data is not a 
                       dataframe)
         Ordering (str): 'Default', 'Columnwise', 'Alphabetical' or 'Statistics'
@@ -52,6 +54,10 @@ def MDplot(Data, Names=None, Ordering='Default', Scaling=None,
         OnlyPlotOutput (bool): if True than returning only ggplot object,
                                if False than returning dictionary containing 
                                ggplot object and additional infos
+        ValueColumn (str): name of the column of values to be plotted
+                           (data in long table format)
+        ClassColumn (str): name of the column with class identifiers for the 
+                           value column (data in long table format)
         
     Returns:
         ggplot object or dictionary containing ggplot object and additional 
@@ -71,6 +77,29 @@ def MDplot(Data, Names=None, Ordering='Default', Scaling=None,
                 Data = Data.rename(columns=dctCols)
         except:
             raise Exception("Data cannot be converted into pandas dataframe")
+    
+    if ValueColumn is not None and ClassColumn is not None:
+        lstCols = list(Data.columns)
+        if ValueColumn not in lstCols:
+            raise Exception("ValueColumn not contained in dataframe")
+        if ClassColumn not in lstCols:
+            raise Exception("ClassColumn not contained in dataframe")
+        
+        lstClasses = list(Data[ClassColumn].unique())
+        DataWide = pd.DataFrame()
+        for strClass in lstClasses:
+            if len(DataWide) == 0:
+                DataWide = Data[Data[ClassColumn] == strClass].copy()\
+                .reset_index(drop=True)
+                DataWide = DataWide.rename(columns={ValueColumn: strClass})
+                DataWide = DataWide[[strClass]]
+            else:
+                dfTemp = Data[Data[ClassColumn] == strClass].copy()\
+                .reset_index(drop=True)
+                dfTemp = dfTemp.rename(columns={ValueColumn: strClass})
+                dfTemp = dfTemp[[strClass]]
+                DataWide = DataWide.join(dfTemp, how='outer')
+        Data = DataWide.copy()
     
     lstCols = list(Data.columns)
     for strCol in lstCols:

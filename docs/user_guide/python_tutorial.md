@@ -43,7 +43,15 @@ _**Fig. 2:** MD-Plot of capped municipality income tax yield (MTY) of Germany mu
 The function returns a ggplot object, but you can get additional in-formation by setting the _OnlyPlotOutput_ parameter to False.
 
 ```python
-dctResult = MDplot(dctExamples['BimodalArtificial'], OnlyPlotOut-put=False)
+dctResult = MDplot(dctExamples['BimodalArtificial'], OnlyPlotOutput=False)
+```
+
+### Working with long table format
+
+The MDplot function accepts by default data in wide table format (each column represents one variable), but can also work with data in long table format (the values of all variables are contained in one column, a second column with identifiers exist) if the column names of the value column and the class column are provided.
+
+```python
+MDplot(dctExamples["SkewedDistributionLongTable"], ValueColumn="value", ClassColumn="class")
 ```
 
 ### Changing Layout
@@ -88,7 +96,7 @@ _**Fig. 5:** Visualization of bimodal data with a drawn Gaussian distribution._
 The parameters _BoxPlot_ (deactivated by default) and _BoxColor_ are used for plotting a boxplot over each MD-Plot.
 
 ```python
-MDplot(dctExamples[' UniformSample'], BoxPlot = True)
+MDplot(dctExamples['UniformSample'], BoxPlot = True)
 ```
 
 ![](images/box_plot.png)
