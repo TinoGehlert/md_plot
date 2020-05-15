@@ -18,12 +18,13 @@ from .helper.signed_log import signed_log
 from .helper.bimodal import bimodal
 from .helper.stat_pde_density import stat_pde_density
 
+
 def MDplot(Data, Names=None, Ordering='Default', Scaling=None, 
            Fill='darkblue', RobustGaussian=True, GaussianColor='magenta', 
-           GaussianLwd=1.5, BoxPlot=False, BoxColor='darkred', 
-           MDscaling='width', Size=0.01, 
-           MinimalAmoutOfData=40, MinimalAmoutOfUniqueData=12, 
-           SampleSize=500000, OnlyPlotOutput=True, 
+           Gaussian_lwd=1.5, BoxPlot=False, BoxColor='darkred', 
+           MDscaling='width', LineColor='black', LineSize=0.01, 
+           QuantityThreshold=40, UniqueValuesThreshold=12, 
+           SampleSize=500000, SizeOfJitteredPoints=1, OnlyPlotOutput=True, 
            ValueColumn=None, ClassColumn=None):
     """
     Plots a mirrored density plot for each numeric column
@@ -41,13 +42,13 @@ def MDplot(Data, Names=None, Ordering='Default', Scaling=None,
         RobustGaussian (bool): draw a gaussian distribution if column is 
                                gaussian
         GaussianColor (str): color for gaussian distribution
-        GaussianLwd (float): line width of gaussian distribution
+        Gaussian_lwd (float): line width of gaussian distribution
         BoxPlot (bool): draw box-plot
         BoxColor (str): color for box-plots
         MDscaling (str): scale of ggplot violin
-        Size (float): line width of ggplot violin
-        MinimalAmoutOfData (int): minimal number of rows
-        MinimalAmoutOfUniqueData (int): minimal number of unique values per 
+        LineSize (float): line width of ggplot violin
+        QuantityThreshold (int): minimal number of rows
+        UniqueValuesThreshold (int): minimal number of unique values per 
                                          column
         SampleSize (int): number of samples used if number of rows is larger 
                           than SampleSize
@@ -194,7 +195,7 @@ def MDplot(Data, Names=None, Ordering='Default', Scaling=None,
                                                 size=45000, 
                                                 replace=False))
                 vec = Data[strCol].loc[sampledIndex]
-                if nUniquePerVar[strCol] > MinimalAmoutOfUniqueData:
+                if nUniquePerVar[strCol] > UniqueValuesThreshold:
                     nonunimodal[strCol] = dip.diptst(vec.dropna(), numt=100)[1]
                     skewed[strCol] = skewtest(vec)[1]
                     args = (dfMinMax[strCol].loc["min"], 
@@ -217,7 +218,7 @@ def MDplot(Data, Names=None, Ordering='Default', Scaling=None,
                 isuniformdist[strCol] = 0
                 bimodalprob[strCol] = 0
             else:
-                if nUniquePerVar[strCol] > MinimalAmoutOfUniqueData:
+                if nUniquePerVar[strCol] > UniqueValuesThreshold:
                     nonunimodal[strCol] = dip.diptst(Data[strCol].dropna(), 
                                                                    numt=100)[1]
                     skewed[strCol] = skewtest(Data[strCol])[1]
@@ -237,8 +238,8 @@ def MDplot(Data, Names=None, Ordering='Default', Scaling=None,
             
             if isuniformdist[strCol] < 0.05 and nonunimodal[strCol] > 0.05 \
             and skewed[strCol] > 0.05 and bimodalprob[strCol] < 0.05 \
-            and nPerVar[strCol] > MinimalAmoutOfData \
-            and nUniquePerVar[strCol] > MinimalAmoutOfUniqueData:
+            and nPerVar[strCol] > QuantityThreshold \
+            and nUniquePerVar[strCol] > UniqueValuesThreshold:
                 normaldist[strCol] = np.random.normal(mhat[strCol], 
                                                       shat[strCol], 
                                                       nSample)
@@ -281,17 +282,17 @@ def MDplot(Data, Names=None, Ordering='Default', Scaling=None,
         rangfolge = list(effectStrength.sort_values(ascending=False).index)
     
 #________________________________________________________________Data Reshaping
-    if nPerVar.min() < MinimalAmoutOfData \
-    or nUniquePerVar.min() < MinimalAmoutOfUniqueData:
-        warnings.warn("Some columns have less than " + str(MinimalAmoutOfData)
-                + " data points or less than " + str(MinimalAmoutOfUniqueData)
+    if nPerVar.min() < QuantityThreshold \
+    or nUniquePerVar.min() < UniqueValuesThreshold:
+        warnings.warn("Some columns have less than " + str(QuantityThreshold)
+                + " data points or less than " + str(UniqueValuesThreshold)
                      + " unique values. Changing from MD-plot to Jitter-Plot "
                      "for these columns.")
         dataDensity = Data.copy()
         mm = Data.median()
         for strCol in lstCols:
-            if nPerVar[strCol] < MinimalAmoutOfData \
-            or nUniquePerVar[strCol] < MinimalAmoutOfUniqueData:
+            if nPerVar[strCol] < QuantityThreshold \
+            or nUniquePerVar[strCol] < UniqueValuesThreshold:
                 if mm[strCol] != 0:
                     dataDensity[strCol] = mm[strCol] \
                     * np.random.uniform(-0.001, 0.001, nCases) + mm[strCol]
@@ -302,8 +303,8 @@ def MDplot(Data, Names=None, Ordering='Default', Scaling=None,
         dataJitter = dataDensity.copy()
         # Delete all scatters for features where distributions can be estimated
         for strCol in lstCols:
-            if nPerVar[strCol] >= MinimalAmoutOfData \
-            and nUniquePerVar[strCol] >= MinimalAmoutOfUniqueData:
+            if nPerVar[strCol] >= QuantityThreshold \
+            and nUniquePerVar[strCol] >= UniqueValuesThreshold:
                 dataJitter[strCol] = np.nan
         #apply ordering
         dataframe = dataDensity[rangfolge].reset_index()\
@@ -320,15 +321,17 @@ def MDplot(Data, Names=None, Ordering='Default', Scaling=None,
                      + p9.scale_x_discrete(limits=rangfolge)
     
     plot = plot + p9.geom_violin(stat = stat_pde_density(scale=MDscaling), 
-                                 fill=Fill, size=Size, trim=True) \
+                                 fill=Fill, colour=LineColor, 
+                                 size=LineSize, trim=True) \
                            + p9.theme(axis_text_x=p9.element_text(rotation=90))
     
-    if nPerVar.min() < MinimalAmoutOfData \
-    or nUniquePerVar.min() < MinimalAmoutOfUniqueData:
+    if nPerVar.min() < QuantityThreshold \
+    or nUniquePerVar.min() < UniqueValuesThreshold:
         dataframejitter = dataJitter[rangfolge].reset_index()\
         .melt(id_vars=["index"])
         dataframejitter = dataframejitter.rename(columns=dctCols)
-        plot = plot + p9.geom_jitter(size=2, data=dataframejitter, 
+        plot = plot + p9.geom_jitter(size=SizeOfJitteredPoints, 
+                                     data=dataframejitter, colour=LineColor,
                                      mapping= p9.aes(x="Variables", 
                                                      group="Variables", 
                                                      y="Values"), 
@@ -343,7 +346,7 @@ def MDplot(Data, Names=None, Ordering='Default', Scaling=None,
                                                           group="Variables", 
                                                           y="Values"), 
                                          colour=GaussianColor, alpha=0, 
-                                         scale=MDscaling, size=GaussianLwd, 
+                                         scale=MDscaling, size=Gaussian_lwd, 
                                          na_rm=True, trim=True, fill=None, 
                                          position="identity", width=1)
     
