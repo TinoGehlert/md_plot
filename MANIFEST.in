@@ -6,3 +6,4 @@ include md_plot/examples/SkewedDistribution.gz.pkl
 include md_plot/examples/SkewedDistributionLongTable.gz.pkl
 include md_plot/examples/StocksData2018Q1.gz.pkl
 include md_plot/examples/UniformSample.gz.pkl
+include readme_pypi.rst
