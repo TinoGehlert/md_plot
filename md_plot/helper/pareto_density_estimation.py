@@ -128,9 +128,9 @@ def pareto_density_estimation(data, paretoRadius=None, kernels=None,
         kernels = 0.5 * (breaks[1:] + breaks[:-1])
     
     if np.min(kernels) - paretoRadius > minData:
-        kernels.append(minData)
+        np.append(kernels, minData)
     if np.max(kernels) + paretoRadius < maxData:
-        kernels.append(maxData)
+        np.append(kernels, maxData)
     kernels.sort()
     
     nKernels = len(kernels)

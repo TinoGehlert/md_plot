@@ -78,6 +78,8 @@ def MDplot(Data, Names=None, Ordering='Default', Scaling=None,
                 Data = Data.rename(columns=dctCols)
         except:
             raise Exception("Data cannot be converted into pandas dataframe")
+    else:
+        Data = Data.reset_index(drop=True)
     
     if ValueColumn is not None and ClassColumn is not None:
         lstCols = list(Data.columns)

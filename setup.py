@@ -2,13 +2,13 @@ from setuptools import setup, find_packages
 
 
 setup(name='md_plot',
-      version='0.1.8',
+      version='0.1.9',
       project_urls={'R-Version': 'https://cran.r-project.org/web/packages/DataVisualizations/index.html', 
                     'Source': 'https://github.com/TinoGehlert/md_plot', 
                     'Docs': 'https://md-plot.readthedocs.io'},
       description='Draws a mirrored density plot for each input column',
       long_description=open('readme_pypi.rst').read(),
-      download_url='https://github.com/TinoGehlert/md_plot/archive/v0.1.8.tar.gz',
+      download_url='https://github.com/TinoGehlert/md_plot/archive/v0.1.9.tar.gz',
       classifiers=[
         'Development Status :: 4 - Beta',
         'Intended Audience :: Science/Research',
