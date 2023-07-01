@@ -168,8 +168,7 @@ def MDplot(Data, Names=None, Ordering='Default', Scaling=None,
         
         dfQuartile = Data.apply(lambda x: mquantiles(x, [0.25, 0.75], 
                                                      alphap=0.5, betap=0.5))
-        dfQuartile = dfQuartile.append(dfQuartile.loc[1] - dfQuartile.loc[0], 
-                                       ignore_index=True)
+        dfQuartile = pd.concat([dfQuartile, dfQuartile.loc[1] - dfQuartile.loc[0]])
         dfQuartile.index = ["low", "hi", "iqr"]
         dfMinMax = Data.apply(lambda x: mquantiles(x, [0.001, 0.999], 
                                                    alphap=0.5, betap=0.5))

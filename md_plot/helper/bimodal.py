@@ -66,20 +66,21 @@ def bimodal(data, plotIt=False, narm=True):
         anz = len(x)
         
         ersteAbleitung = fx.diff().dropna() / x.diff().dropna()
-        ersteAbleitung = pd.Series([0]).append(ersteAbleitung)
+        ersteAbleitung = pd.concat([pd.Series([0]), ersteAbleitung])
         windowSize = 13
         ersteAbleitung = pd.Series(lfilter(np.repeat(1.0/windowSize, 
                                                      windowSize), 
                                            1, ersteAbleitung))
         
         secondDerivative = ersteAbleitung.diff().dropna() / x.diff().dropna()
-        secondDerivative = pd.Series([0]).append(secondDerivative)
+        
+        secondDerivative = pd.concat([pd.Series([0]), secondDerivative])
         windowSize = 15
         secondDerivative = pd.Series(lfilter(np.repeat(1.0/windowSize, 
                                                        windowSize), 
                                              1, secondDerivative))
         
-        Next = pd.Series([x for x in range(1, anz)]).append(pd.Series([anz-1]))
+        Next = pd.concat([pd.Series([x for x in range(1, anz)]), pd.Series([anz-1])])
         posOrNeg = x * 0
         posOrNeg[secondDerivative >  EPS] = 1
         posOrNeg[secondDerivative < -1 * EPS] = -1

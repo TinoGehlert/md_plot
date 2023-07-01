@@ -142,7 +142,7 @@ def pareto_density_estimation(data, paretoRadius=None, kernels=None,
     upData = data[data > (maxData - paretoRadius)]
     upR = 2 * maxData - upData
     # extend data by mirrowing
-    dataPlus = data.append(lowR).append(upR)
+    dataPlus = pd.concat([data, lowR, upR])
     
     paretoDensity = []
     for fltKernel in kernels:
