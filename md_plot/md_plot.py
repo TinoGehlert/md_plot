@@ -9,7 +9,6 @@ import warnings
 import pandas as pd
 import numpy as np
 import plotnine as p9
-import unidip.dip as dip
 from pandas.api.types import is_numeric_dtype
 from scipy.stats.mstats import mquantiles
 from scipy.stats import norm, trim_mean, skewtest, kstest
@@ -17,6 +16,7 @@ from .helper.robust_normalization import robust_normalization
 from .helper.signed_log import signed_log
 from .helper.bimodal import bimodal
 from .helper.stat_pde_density import stat_pde_density
+from .unidip import dip
 
 
 def MDplot(Data, Names=None, Ordering='Default', Scaling=None, 
@@ -168,7 +168,9 @@ def MDplot(Data, Names=None, Ordering='Default', Scaling=None,
         
         dfQuartile = Data.apply(lambda x: mquantiles(x, [0.25, 0.75], 
                                                      alphap=0.5, betap=0.5))
-        dfQuartile = pd.concat([dfQuartile, dfQuartile.loc[1] - dfQuartile.loc[0]])
+        psIQR = dfQuartile.loc[1] - dfQuartile.loc[0]
+        dfIQR = pd.DataFrame([psIQR.values], columns=psIQR.index)
+        dfQuartile = pd.concat([dfQuartile, dfIQR])
         dfQuartile.index = ["low", "hi", "iqr"]
         dfMinMax = Data.apply(lambda x: mquantiles(x, [0.001, 0.999], 
                                                    alphap=0.5, betap=0.5))
